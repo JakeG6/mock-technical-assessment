@@ -33,7 +33,14 @@ const ContactsTable = props => {
     
     return (
         <div>
-            <p>Contacts:</p>
+            <Row>
+                <Col>
+                    <p>Contacts:</p>
+                </Col>
+                <Col>
+                    <Button onClick={() => props.setCurrentGroup([])}>Show All</Button>
+                </Col>
+            </Row>
             <ListGroup>
                 {
                     props.contacts.length > 0 ?
@@ -47,7 +54,7 @@ const ContactsTable = props => {
                         )
                         :
                         props.currentGroup.length > 0 ? (
-                            props.currentGroup.map(contact => (
+                            props.contacts.filter(contact => props.currentGroup.includes(contact.id)).map(contact => (
                                 <ListGroup.Item key={contact.id}>                           
                                     <p>{contact.firstName} {contact.lastName}</p>
                                     <p>{contact.phoneNumber ? contact.phoneNumber : "No number provided"}</p>
@@ -78,7 +85,6 @@ const ContactsTable = props => {
                             </ListGroup.Item>
                         ))
                     :
-                    
                     <p>There are no contacts</p>
                 }
             </ListGroup>

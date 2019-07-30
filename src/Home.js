@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import AddContact from './newContactForm'
 import ContactsTable from './ContactsTable'
-import Groups from './Groups'
+import Groups from './Groups/Groups'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -12,8 +12,6 @@ import Tab from 'react-bootstrap/Tabs'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
-
 
 const Home = () => {
 
@@ -48,7 +46,14 @@ const Home = () => {
                         </Tabs>
                     </Col>
                     <Col xs={12} sm={6} >                        
-                        <ContactsTable contacts={contacts} setContacts={setContacts} deleteContact={deleteContact} tableDisplay={tableDisplay} currentGroup={currentGroup} />
+                        <ContactsTable 
+                            contacts={contacts} 
+                            setContacts={setContacts} 
+                            deleteContact={deleteContact} 
+                            tableDisplay={tableDisplay} 
+                            currentGroup={currentGroup}
+                            setCurrentGroup={setCurrentGroup}
+                        />
                     </Col>
                 </Row>
             </Container>

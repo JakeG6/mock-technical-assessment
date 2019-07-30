@@ -4,20 +4,36 @@ import CreateGroupForm from './CreateGroupForm'
 
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 const Groups = props => {
 
     const displayGroupList = 'displayGroupList'
     const displayCreateGroup = 'displayCreateGroup'
+    const displayGroupEditor = 'displayGroupEditor'
+
+
 
     const [groups, setGroups] = useState([])
     const [groupDisplay, setGroupDisplay] = useState(displayGroupList)
+    //const [currentEditorGroup]
 
     const addGroup = group => {
         group.id = groups.length + 1
         console.log(group)
         setGroups([...groups, group])
+    }
+
+    const deleteGroup = id => {
+        props.setCurrentGroup([])
+        setGroups(groups.filter(group => group.id !== id))
+    }
+
+    const showGroupEditor = group => {
+        setGroupDisplay(displayGroupEditor)
+
     }
 
     return (
@@ -34,7 +50,18 @@ const Groups = props => {
                             {
                             groups.map(group => (
                             <ListGroup.Item action onClick={() => props.setCurrentGroup(group.groupContacts)} key={group.id}>                           
-                                {group.groupName}
+                                <Row>
+                                    <Col>
+                                        {group.groupName}
+                                    </Col>
+                                    <Col>
+                                        <Button variant="outline-info">Edit</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button onClick={() => deleteGroup(group.id)} variant="outline-danger">Delete</Button>
+                                    </Col>
+                                </Row>
+                                
                             </ListGroup.Item>
                             ))
                             }
