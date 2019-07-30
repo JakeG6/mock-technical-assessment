@@ -32,8 +32,6 @@ const Home = () => {
         setContacts(contacts.filter(contact => contact.id !== id))
     }
 
-    
-
     return (
         <div>
             <Container>
@@ -45,12 +43,12 @@ const Home = () => {
                                 <AddContact addContact={addContact} /> 
                             </Tab>
                             <Tab eventKey="groups" title="Groups">
-                                <Groups contacts={contacts} tableDisplay={tableDisplay} setTable={setTable} setCurrentGroup={setCurrentGroup} />
+                                <Groups contacts={contacts} tableDisplay={tableDisplay}  setCurrentGroup={setCurrentGroup} />
                             </Tab>
                         </Tabs>
                     </Col>
                     <Col xs={12} sm={6} >                        
-                        <ContactsTable contacts={contacts} setContacts={setContacts} deleteContact={deleteContact} tableDisplay={tableDisplay} setTable={setTable} currentGroup={currentGroup} />
+                        <ContactsTable contacts={contacts} setContacts={setContacts} deleteContact={deleteContact} tableDisplay={tableDisplay} currentGroup={currentGroup} />
                     </Col>
                 </Row>
             </Container>

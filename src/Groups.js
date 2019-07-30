@@ -24,7 +24,7 @@ const Groups = props => {
         <div>
             <ListGroup>
                 {
-                    groupDisplay == displayCreateGroup ? 
+                    groupDisplay === displayCreateGroup ? 
                     <div>
                         <CreateGroupForm addGroup={addGroup} contacts={props.contacts} setGroupDisplay={setGroupDisplay} displayGroupList={displayGroupList} />
                     </div>

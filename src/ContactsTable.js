@@ -46,8 +46,8 @@ const ContactsTable = props => {
                             />
                         )
                         :
-                        props.tableDisplay.length > 0 ? (
-                            props.tableDisplay.map(contact => (
+                        props.currentGroup.length > 0 ? (
+                            props.currentGroup.map(contact => (
                                 <ListGroup.Item key={contact.id}>                           
                                     <p>{contact.firstName} {contact.lastName}</p>
                                     <p>{contact.phoneNumber ? contact.phoneNumber : "No number provided"}</p>
