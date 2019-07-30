@@ -19,19 +19,19 @@ const CreateGroupForm = props => {
     }
 
     const handleCheckbox = event => {
-
         const { value } = event.target;
+        const intValue = parseInt(value, 10);
         let newGroupContacts = [...newGroup.groupContacts];
-        const contactExists = newGroupContacts.includes(value);
-
+        const contactExists = newGroupContacts.find(contact => contact.id === intValue);
+      
         if (contactExists) {
-            newGroupContacts = newGroupContacts.filter(contact => contact !== value);
+          newGroupContacts = newGroupContacts.filter(contact => contact.id !== intValue);
         } else {
-            newGroupContacts = [...newGroupContacts, value];
+          const contact = props.contacts.find(contact => contact.id === intValue)
+          newGroupContacts = [...newGroupContacts, contact];
         }
-
+      
         setNewGroup({...newGroup, groupContacts: newGroupContacts });
-
     }
 
     const handleSubmit = event => {
@@ -47,7 +47,6 @@ const CreateGroupForm = props => {
         setNewGroup(defaultForm)
         props.setGroupDisplay('displayGroupList')
         
-
     }
 
     return (

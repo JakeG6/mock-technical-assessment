@@ -33,7 +33,7 @@ const Groups = props => {
                         <div>
                             {
                             groups.map(group => (
-                            <ListGroup.Item action onClick={() => props.setTable(group.groupContacts)} key={group.id}>                           
+                            <ListGroup.Item action onClick={() => props.setCurrentGroup(group.groupContacts)} key={group.id}>                           
                                 {group.groupName}
                             </ListGroup.Item>
                             ))

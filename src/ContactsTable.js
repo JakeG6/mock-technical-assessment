@@ -8,32 +8,32 @@ import Col from 'react-bootstrap/Col'
 
 const ContactsTable = props => {
 
-        //contact editor displayed?
-        const [displayEditor, setEditDisplay] = useState(false);
+    //contact editor displayed?
+    const [displayEditor, setEditDisplay] = useState(false);
 
-        //default contact for editing form
-        const defaultEditState = {
-            id: null, firstName: '', lastName: '', phoneNumber: '', email: ''
-        }
-            
-        const [currentContact, setCurrentContact] = useState(defaultEditState)
-    
-        //when set clicked contact for the edit form
-        const editContact = contact => {
-            setEditDisplay(true)
-            setCurrentContact({
-                id: contact.id, firstName: contact.firstName, lastName: contact.lastName, phoneNumber: contact.phoneNumber, email: contact.email })
-        }
-    
-        //submit updated contact
-        const updateContact = (id, updatedContact) => {
-            setEditDisplay(false) 
-            props.setContacts(props.contacts.map(contact => (contact.id === id ? updatedContact : contact)))
-        }
+    //default contact for editing form
+    const defaultEditState = {
+        id: null, firstName: '', lastName: '', phoneNumber: '', email: ''
+    }
+        
+    const [currentContact, setCurrentContact] = useState(defaultEditState)
+
+    //when set clicked contact for the edit form
+    const editContact = contact => {
+        setEditDisplay(true)
+        setCurrentContact({
+            id: contact.id, firstName: contact.firstName, lastName: contact.lastName, phoneNumber: contact.phoneNumber, email: contact.email })
+    }
+
+    //submit updated contact
+    const updateContact = (id, updatedContact) => {
+        setEditDisplay(false) 
+        props.setContacts(props.contacts.map(contact => (contact.id === id ? updatedContact : contact)))
+    }
     
     return (
         <div>
-            <p>All Contacts:</p>
+            <p>Contacts:</p>
             <ListGroup>
                 {
                     props.contacts.length > 0 ?

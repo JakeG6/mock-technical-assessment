@@ -18,6 +18,7 @@ import Form from 'react-bootstrap/Form'
 const Home = () => {
 
     const [contacts, setContacts] = useState([])
+    const [currentGroup, setCurrentGroup] = useState([])
     const [tableDisplay, setTable] = useState([])
 
     //add a contact to the contacts table
@@ -44,12 +45,12 @@ const Home = () => {
                                 <AddContact addContact={addContact} /> 
                             </Tab>
                             <Tab eventKey="groups" title="Groups">
-                                <Groups contacts={contacts} tableDisplay={tableDisplay} setTable={setTable} />
+                                <Groups contacts={contacts} tableDisplay={tableDisplay} setTable={setTable} setCurrentGroup={setCurrentGroup} />
                             </Tab>
                         </Tabs>
                     </Col>
-                    <Col xs={12} sm={6} >
-                        <ContactsTable contacts={contacts} setContacts={setContacts} deleteContact={deleteContact} tableDisplay={tableDisplay} setTable={setTable}/>
+                    <Col xs={12} sm={6} >                        
+                        <ContactsTable contacts={contacts} setContacts={setContacts} deleteContact={deleteContact} tableDisplay={tableDisplay} setTable={setTable} currentGroup={currentGroup} />
                     </Col>
                 </Row>
             </Container>
