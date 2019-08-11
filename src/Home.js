@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import AddContact from './newContactForm'
+import AddContact from './AddContact'
 import ContactsTable from './ContactsTable'
 import Groups from './Groups/Groups'
 
@@ -9,9 +9,6 @@ import Col from 'react-bootstrap/Col'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tabs'
-
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 
 const Home = () => {
 
@@ -33,7 +30,11 @@ const Home = () => {
     return (
         <div>
             <Container>
-                <Row><h1>Contacts</h1></Row>
+                <Row>
+                    <Col>
+                        <h1>Contacts</h1>
+                    </Col>
+                </Row>
                 <Row>            
                     <Col xs={12} sm={6} >
                         <Tabs defaultActiveKey="addContact">

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import EditForm from './EditForm'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import ContactEditForm from './ContactEditForm';
 
 const ContactsTable = props => {
 
@@ -22,7 +22,8 @@ const ContactsTable = props => {
     const editContact = contact => {
         setEditDisplay(true)
         setCurrentContact({
-            id: contact.id, firstName: contact.firstName, lastName: contact.lastName, phoneNumber: contact.phoneNumber, email: contact.email })
+            id: contact.id, firstName: contact.firstName, lastName: contact.lastName, phoneNumber: contact.phoneNumber, email: contact.email 
+        })
     }
 
     //submit updated contact
@@ -35,17 +36,17 @@ const ContactsTable = props => {
         <div>
             <Row>
                 <Col>
-                    <p>Contacts:</p>
-                </Col>
-                <Col>
-                    <Button onClick={() => props.setCurrentGroup([])}>Show All</Button>
+                    <Button onClick={() => props.setCurrentGroup([])} size="md" variant="success" block>Show All</Button>
                 </Col>
             </Row>
-            <ListGroup>
+            <Row>
+                <Col>
+                <ListGroup>
+                {/* Shows the Contact Editor Form, current Contacts in a selected group, or all contacts  */}
                 {
                     props.contacts.length > 0 ?
                         displayEditor ? (
-                            <EditForm 
+                            <ContactEditForm 
                                 currentContact={currentContact} 
                                 setCurrentContact={setCurrentContact} 
                                 setEditDisplay={setEditDisplay} 
@@ -61,9 +62,9 @@ const ContactsTable = props => {
                                     <p>{contact.email ? contact.email : "No email provided"}</p>
                                     <Container>
                                         <Row>
-                                            <Col xs={8}></Col>
-                                            <Col xs={2} ><Button variant="outline-info" onClick={() => editContact(contact)}>Edit</Button></Col>
-                                            <Col xs={2} ><Button variant="outline-danger" onClick={() => props.deleteContact(contact.id)}>Delete</Button></Col>
+                                            <Col xs={2} md={4} lg={6} xl={8}></Col>
+                                            <Col xs={5} md={4} lg={3} xl={2}><Button variant="outline-info" onClick={() => editContact(contact)}>Edit</Button></Col>
+                                            <Col xs={5} md={4} lg={3} xl={2}><Button variant="outline-danger" onClick={() => props.deleteContact(contact.id)}>Delete</Button></Col>
                                         </Row>
                                     </Container>
                                 </ListGroup.Item>
@@ -77,20 +78,22 @@ const ContactsTable = props => {
                                 <p>{contact.email ? contact.email : "No email provided"}</p>
                                 <Container>
                                     <Row>
-                                        <Col xs={8}></Col>
-                                        <Col xs={2} ><Button variant="outline-info" onClick={() => editContact(contact)}>Edit</Button></Col>
-                                        <Col xs={2} ><Button variant="outline-danger" onClick={() => props.deleteContact(contact.id)}>Delete</Button></Col>
+                                        <Col xs={2} md={4} lg={6} xl={8}></Col>
+                                        <Col xs={5} md={4} lg={3} xl={2}><Button variant="outline-info" onClick={() => editContact(contact)}>Edit</Button></Col>
+                                        <Col xs={5} md={4} lg={3} xl={2}><Button variant="outline-danger" onClick={() => props.deleteContact(contact.id)}>Delete</Button></Col>
                                     </Row>
                                 </Container>
                             </ListGroup.Item>
                         ))
                     :
-                    <p>There are no contacts</p>
+                    <h2>There are no contacts</h2>
                 }
             </ListGroup>
+                </Col>
+            </Row>
+            
         </div>
-    )
-    
+    )   
 }
 
 export default ContactsTable

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 import CreateGroupForm from './CreateGroupForm'
+import EditGroupForm from './GroupEditForm'
 
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
@@ -14,26 +15,45 @@ const Groups = props => {
     const displayCreateGroup = 'displayCreateGroup'
     const displayGroupEditor = 'displayGroupEditor'
 
+        
+    //Default group for editing form
+    const defaultGroupEditorState = {
+        id: null, groupName: '', groupContacts: []
+    }
 
-
+    //All the contact groups
     const [groups, setGroups] = useState([])
+        
+    //Display the groups, group creator, or group editor
     const [groupDisplay, setGroupDisplay] = useState(displayGroupList)
-    //const [currentEditorGroup]
+    
+    //The group that is displayed within the group editor
+    const [currentEditorGroup, setCurrentEditorGroup] = useState(defaultGroupEditorState)
 
+    //create a group
     const addGroup = group => {
         group.id = groups.length + 1
         console.log(group)
         setGroups([...groups, group])
     }
 
+    //delete group
     const deleteGroup = id => {
         props.setCurrentGroup([])
         setGroups(groups.filter(group => group.id !== id))
     }
 
-    const showGroupEditor = group => {
-        setGroupDisplay(displayGroupEditor)
+    //Display group editor
+    const editGroup = group => { 
+        console.log(group)
+        setCurrentEditorGroup(group)
+        setGroupDisplay(displayGroupEditor)  
+    }
 
+    //submit updated group
+    const updateGroup = (id, updatedGroup) => {
+        setGroupDisplay(displayGroupList)
+        setGroups(groups.map(group => (group.id === id ? updatedGroup : group)))
     }
 
     return (
@@ -43,6 +63,18 @@ const Groups = props => {
                     groupDisplay === displayCreateGroup ? 
                     <div>
                         <CreateGroupForm addGroup={addGroup} contacts={props.contacts} setGroupDisplay={setGroupDisplay} displayGroupList={displayGroupList} />
+                    </div>
+                    :
+                    groupDisplay === displayGroupEditor ?
+                    <div>
+                        <EditGroupForm 
+                            currentEditorGroup={currentEditorGroup}
+                            setCurrentEditorGroup={setCurrentEditorGroup}
+                            defaultGroupEditorState={defaultGroupEditorState}
+                            setGroupDisplay={setGroupDisplay}
+                            updateGroup={updateGroup}
+                            contacts={props.contacts}
+                        />
                     </div>
                     :
                     groups.length > 0 ?
@@ -55,7 +87,7 @@ const Groups = props => {
                                         {group.groupName}
                                     </Col>
                                     <Col>
-                                        <Button variant="outline-info">Edit</Button>
+                                        <Button onClick={() => editGroup(group)} variant="outline-info">Edit</Button>
                                     </Col>
                                     <Col>
                                         <Button onClick={() => deleteGroup(group.id)} variant="outline-danger">Delete</Button>

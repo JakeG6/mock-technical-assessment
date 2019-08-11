@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-//import useContactForm from './customHooks.js'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
-import ListGroup from 'react-bootstrap/ListGroup'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -53,7 +50,7 @@ const AddContact = props => {
                             </Form.Group>
                             <Form.Group >
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="text" name="email" onChange={handleInputChange} placeholder="email" value={newContact.email} />
+                                <Form.Control type="text" name="email" onChange={handleInputChange} placeholder="Email" value={newContact.email} />
                             </Form.Group>
                             <Button variant="primary" type="submit" block>Submit</Button>
                         </Col>

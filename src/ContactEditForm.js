@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const EditForm = props => {
+const ContactEditForm = props => {
 
     const handleInputChange = event => {
         const { name, value } = event.target 
@@ -14,24 +14,23 @@ const EditForm = props => {
 
     return (
         <div>
-            
             <Form onSubmit={event => { 
                 event.preventDefault();
                 props.updateContact(props.currentContact.id, props.currentContact)
             }}>
-                <Form.Group >
+                <Form.Group>
                     <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" name="firstName" onChange={handleInputChange} placeholder="First Name" value={props.currentContact.firstName} />
                 </Form.Group>
-                <Form.Group >
+                <Form.Group>
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control type="text" name="lastName" onChange={handleInputChange} placeholder="Last Name" value={props.currentContact.lastName} />
                 </Form.Group>
-                <Form.Group >
+                <Form.Group>
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control type="text" name="phoneNumber" onChange={handleInputChange} placeholder="Phone Number" value={props.currentContact.phoneNumber} />
                 </Form.Group>
-                <Form.Group >
+                <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="text" name="email" onChange={handleInputChange} placeholder="email" value={props.currentContact.email} />
                 </Form.Group>
@@ -42,4 +41,4 @@ const EditForm = props => {
     )
 }
 
-export default EditForm
+export default ContactEditForm
